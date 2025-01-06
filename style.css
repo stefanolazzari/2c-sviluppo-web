@@ -1,3 +1,48 @@
-*{
-    cursor: url(pointer.svg) 4 12, auto;
-}
+    /* Stile per centrare la lista */
+    body {
+        display:flex;
+        justify-content: center; /* Centra orizzontalmente */
+        align-items: center;    /* Centra verticalmente */
+        height: 100vh;          /* Imposta l'altezza al 100% della finestra */
+        margin: 0;              /* Rimuove i margini di default */
+        font-family: Arial, sans-serif;
+        background-color: #c2d2e1; /* Colore di sfondo leggero */
+      }
+  
+      #miaLista {
+        list-style: none; /* Rimuove i pallini dalla lista */
+        padding: 10px;
+        margin-bottom: 3%;
+        width: 300px; /* Larghezza della lista */
+        text-align: center; /* Centra il testo */
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra per la lista */
+        border-radius: 8px;
+      }
+  
+      #miaLista li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between; /* Spazia il testo e l'icona */
+        align-items: center; /* Allinea verticalmente il contenuto */
+      }
+  
+      #miaLista li:last-child {
+        border-bottom: none; /* Rimuove la linea sotto l'ultimo elemento */
+      }
+  
+      #bottoneAggiungi, #svuota {
+        
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+  
+      #bottoneAggiungi:hover, #svuota:hover {
+        background-color: #0056b3;
+      }

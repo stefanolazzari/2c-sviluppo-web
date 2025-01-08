@@ -1,22 +1,26 @@
-//Seleziona il bottone di aggiunta
 
 const bottoneAggiungi = document.getElementById('bottoneAggiungi');
-//const bottoneTogli = document.getElementById('bottoneTogli');
 const lista = document.getElementById('miaLista');
 const bottoneSvuota = document.getElementById('svuota');
 
-console.log(lista.children.length);
 
 
 
 function controllaSeListaVuota(){
-    if (condition) {
-        
+    if (lista.children.length === 0) {
+        const messaggioVuota = document.createElement("li"); // crea un elemento per il messaggio lkista vuota
+        messaggioVuota.textContent = "La lista è vuota";
+        messaggioVuota.id = 'messaggioVuota'; 
+        lista.appendChild(messaggioVuota);   
     } else {
-        
+        const messaggioVuota = document.getElementById('messaggioVuota');
+        if (messaggioVuota) {
+            messaggioVuota.remove(); // Rimuove il messaggio se la lista non è più vuota
+          }
     }
-
 }
+
+controllaSeListaVuota();
 
 bottoneAggiungi.addEventListener('click', function () {
 
@@ -33,16 +37,21 @@ bottoneAggiungi.addEventListener('click', function () {
 
     iconaCestino.addEventListener('click', function () {
         nuovoElemento.remove();
+        controllaSeListaVuota();
     })
 
+    controllaSeListaVuota()
+
 });
+
+
+
 
 bottoneSvuota.addEventListener('click', function () {
     const confermaCanc = confirm("Sei sicuro di voler svuotare la lista?");
     if (confermaCanc) {
-
         if (lista.children.length > 0) {
-            lista.innerHTML = '';
+            lista.innerHTML = '';  
         }
     }
 })

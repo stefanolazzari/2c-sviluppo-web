@@ -8,7 +8,7 @@ const bottoneSvuota = document.getElementById('svuota');
 
 function controllaSeListaVuota(){
     if (lista.children.length === 0) {
-        const messaggioVuota = document.createElement("li"); // crea un elemento per il messaggio lkista vuota
+        const messaggioVuota = document.createElement("li"); // crea un elemento per il messaggio lista vuota
         messaggioVuota.textContent = "La lista è vuota";
         messaggioVuota.id = 'messaggioVuota'; 
         lista.appendChild(messaggioVuota);   
@@ -20,7 +20,9 @@ function controllaSeListaVuota(){
     }
 }
 
-controllaSeListaVuota();
+controllaSeListaVuota(); //chiama la funzione 
+
+
 
 bottoneAggiungi.addEventListener('click', function () {
 
@@ -37,10 +39,10 @@ bottoneAggiungi.addEventListener('click', function () {
 
     iconaCestino.addEventListener('click', function () {
         nuovoElemento.remove();
-        controllaSeListaVuota();
+        controllaSeListaVuota(); //viene chiamata anche quando si clicca sul cestino
     })
 
-    controllaSeListaVuota()
+    controllaSeListaVuota(); //viene chiamata anche quando si clicca sul bottone aggiungi
 
 });
 
@@ -52,6 +54,7 @@ bottoneSvuota.addEventListener('click', function () {
     if (confermaCanc) {
         if (lista.children.length > 0) {
             lista.innerHTML = '';  
+            controllaSeListaVuota(); //viene chiamata anche quando si clicca sul bottone svuota
         }
     }
 })

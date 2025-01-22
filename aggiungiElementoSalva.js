@@ -1,8 +1,9 @@
 
 const bottoneAggiungi = document.getElementById('bottoneAggiungi');
 const lista = document.getElementById('miaLista');
-const bottoneSvuota = document.getElementById('svuota'); 
-const bottoneSalva = document.getElementById('saveButton');
+const bottoneSvuota = document.getElementById('svuota');
+
+
 
 
 function controllaSeListaVuota(){
@@ -26,11 +27,11 @@ controllaSeListaVuota(); //chiama la funzione
 bottoneAggiungi.addEventListener('click', function () {
 
     const nuovoElemento = document.createElement('li');
-    const userInput = prompt("Inserisci il prodotto");
+    const userInput = prompt("inserisci un testo");
     const iconaCestino = document.createElement('span');
 
     nuovoElemento.textContent = userInput;
-    iconaCestino.textContent = "  🗑️"
+    iconaCestino.textContent = " 🗑️"
     iconaCestino.style.cursor = "pointer";
 
     nuovoElemento.appendChild(iconaCestino);
@@ -46,6 +47,8 @@ bottoneAggiungi.addEventListener('click', function () {
 });
 
 
+
+
 bottoneSvuota.addEventListener('click', function () {
     const confermaCanc = confirm("Sei sicuro di voler svuotare la lista?");
     if (confermaCanc) {
@@ -57,31 +60,41 @@ bottoneSvuota.addEventListener('click', function () {
 })
 
 
-function salvaLista(){
-    const elementiLista = []; //array che incorpora gli elementi <li>
-    
-    //itera sugli elementi della lista
-    Array.from(lista.children).forEach((elemento)=>{
-        if(elemento.id !== 'messaggioVuota'){
-            elementiLista.push(elemento.textContent.replace('🗑️', '').trim());
-        }
-    })
+// Seleziona il pulsante per salvare
+const salvaPulsante = document.getElementById('saveButton');
 
-    if (elementiLista.length === 0){
-        alert("La lista è vuota");
+// Funzione per salvare la lista in un file JSON
+function lvaListaInJson() {
+  const elementiLista = [];
+  
+  // Itera sugli elementi della lista
+  Array.from(lista.children).forEach((elemento) => {
+    // Ignora l'elemento "La lista è vuota"
+    if (elemento.id !== 'messaggioVuota') {
+      elementiLista.push(elemento.textContent.replace('🗑️', '').trim());
     }
+  });
 
+  if (elementiLista.length === 0) {
+    alert("La lista è vuota. Nulla da salvare.");
+    return;
+  }
 
-    const jsonData = JSON.stringify(elementiLista, null, 2); //formattazione a 2 spazi
-    const blob = new Blob([jsonData],{ type: 'application/json'});
+  // Crea un oggetto JSON
+  const jsonData = JSON.stringify(elementiLista, null, 2); // Formatta con 2 spazi
 
-
-
+  // Crea un blob e un link per il download
+  const blob = new Blob([jsonData], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'lista.json';
+  
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
-
-bottoneSalva.addEventListener('click', salvaLista);
-
-
-
-
+// Aggiungi l'evento click al pulsante "Salva"
+salvaPulsante.addEventListener('click', salvaListaInJson);

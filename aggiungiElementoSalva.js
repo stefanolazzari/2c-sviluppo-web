@@ -6,6 +6,7 @@ const bottoneSvuota = document.getElementById('svuota');
 
 
 
+
 function controllaSeListaVuota(){
     if (lista.children.length === 0) {
         const messaggioVuota = document.createElement("li"); // crea un elemento per il messaggio lista vuota
@@ -64,7 +65,7 @@ bottoneSvuota.addEventListener('click', function () {
 const salvaPulsante = document.getElementById('saveButton');
 
 // Funzione per salvare la lista in un file JSON
-function lvaListaInJson() {
+function salvaListaInJson() {
   const elementiLista = [];
   
   // Itera sugli elementi della lista

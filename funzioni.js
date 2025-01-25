@@ -27,7 +27,9 @@ function somma(a1,b2){
     console.log("Il risultato della somma è= " + somma);
 }
 
-somma(56,100);  //funzione invocata
+somma(56,100);  //funzione invocata 
+
+//--------------------------------------------------------------
 
 
 //Valore di ritorno
@@ -59,14 +61,23 @@ function sePari(numero){
     }
 
 }
-
 sePari(4);
 
+//----------------------------------------------------------------------------------
 
 
 
 
+function divisione(a,b){
+    let risultato = a / b;
+    return risultato
+}
 
 
+//funzione di callback, generalizzazione del problema
 
+function calcolo(a,b,funzDiCalcolo){
+    return funzDiCalcolo(a,b);
+}
 
+console.log(calcolo(40,7,divisione));

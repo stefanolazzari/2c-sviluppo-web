@@ -64,6 +64,7 @@ bottoneSvuota.addEventListener('click', function () {
 // Seleziona il pulsante per salvare
 const salvaPulsante = document.getElementById('saveButton');
 
+
 // Funzione per salvare la lista in un file JSON
 function salvaListaInJson() {
   const elementiLista = [];
@@ -91,10 +92,12 @@ function salvaListaInJson() {
   const link = document.createElement('a');
   link.href = url;
   link.download = 'lista.json';
+  link.textContent = 'scarica la lista';
   
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  lista.appendChild(link);
+  //document.body.appendChild(link);
+  //link.click();
+  //document.body.removeChild(link);
 }
 
 // Aggiungi l'evento click al pulsante "Salva"

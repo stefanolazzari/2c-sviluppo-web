@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const fs = require('fs');  // Modulo per gestire file
+
 
 const app = express();
 const PORT = 3000;

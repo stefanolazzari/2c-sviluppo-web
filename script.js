@@ -61,17 +61,14 @@ bottoneSvuota.addEventListener('click', function () {
 })
 
 
-// Seleziona il pulsante per salvare
 const salvaPulsante = document.getElementById('saveButton');
 
-
-// Funzione per salvare la lista in un file JSON
-function salvaListaInJson() {
+// Funzione per inviare la lista al server
+function salvaListaNelFile() {
   const elementiLista = [];
-  
-  // Itera sugli elementi della lista
+
+  // Estrai i testi dagli elementi della lista
   Array.from(lista.children).forEach((elemento) => {
-    // Ignora l'elemento "La lista è vuota"
     if (elemento.id !== 'messaggioVuota') {
       elementiLista.push(elemento.textContent.replace('🗑️', '').trim());
     }
@@ -82,23 +79,16 @@ function salvaListaInJson() {
     return;
   }
 
-  // Crea un oggetto JSON
-  const jsonData = JSON.stringify(elementiLista, null, 2); // Formatta con 2 spazi
-
-  // Crea un blob e un link per il download
-  const blob = new Blob([jsonData], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'lista.json';
-  link.textContent = 'scarica la lista';
-  
-  lista.appendChild(link);
-  //document.body.appendChild(link);
-  //link.click();
-  //document.body.removeChild(link);
+  // Invia i dati al server
+  fetch('http://localhost:3000/salva-lista', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ lista: elementiLista })
+  })
+  .then(response => response.json())
+  .then(data => alert(data.message))
+  .catch(error => console.error('Errore:', error));
 }
 
-// Aggiungi l'evento click al pulsante "Salva"
-salvaPulsante.addEventListener('click', salvaListaInJson);
+// Assegna l'evento al pulsante
+salvaPulsante.addEventListener('click', salvaListaNelFile);

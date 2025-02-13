@@ -7,12 +7,7 @@ let elencoFrutta = ["kiwi", "banane", "pere","pesche","mandarini" ];
 let arrayVoti = [40,89,70,89,70,89,70,89,70,89,70,89,70,89,70,89,70,89,70,89,70,89,70,89,70,89,70,89,70,89,70]; //dichiarazione di array
 
 
-console.log(arrayVoti[arrayVoti.length-1]);
-
-
-
-
-
+console.log(arrayVoti[arrayVoti.length-1]);//stampa l'ultimo elemento
 
 console.log(elencoFrutta);
 
@@ -55,4 +50,11 @@ console.log(ordine);
 
 ordine.sort();  //ordina l'array
 console.log(ordine);
+
+
+let word1 = "roma";
+let word2 = "amor";
+
+console.log(word1.split("").sort());
+console.log(word2.split("").sort());
 

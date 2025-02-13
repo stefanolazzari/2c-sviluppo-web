@@ -121,6 +121,15 @@ console.log("Il risultato del modulo di 500 e 400 è: " + calcolo(500,400,modulo
 
 
 
+function sommaParametri(parametro1,parametro2,parametro3){
+
+   let risultatoTot = (parametro1 + parametro2)/parametro3;
+   return risultatoTot;
+
+}
+
+console.log(sommaParametri(50,30,2));
+
 
 
 
